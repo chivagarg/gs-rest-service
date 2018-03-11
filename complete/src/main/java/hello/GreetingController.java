@@ -1,8 +1,13 @@
 package hello;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+
+import hello.http.Caller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +31,14 @@ public class GreetingController {
         list.add("2410 East Lynn st, Seattle");
 
         return new Properties(counter.incrementAndGet(), list);
+    }
+
+    @RequestMapping("/handle")
+    public Greeting handle() throws IOException {
+        Caller caller = new Caller();
+        String response = caller.sendGetRequest();
+
+        return new Greeting(counter.incrementAndGet(), response);
+
     }
 }

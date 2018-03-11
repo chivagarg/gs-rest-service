@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import hello.http.Caller;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,5 +51,12 @@ public class GreetingControllerTests {
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
     }
+
+  /*  @Test
+    public void paramHttpGet() throws Exception {
+        Caller caller = new Caller();
+        String response = caller.sendGetRequest();
+        response = "" + response;
+    }*/
 
 }
